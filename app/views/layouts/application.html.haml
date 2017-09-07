@@ -13,6 +13,6 @@
   %body
     .container.content-section
       = yield
-    %script{ type: 'text/javascript', src: 'https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAnHQwur465RybrZnb4EV2U4ViEz4zbYWU' }
+    %script{ type: 'text/javascript', src: "https://maps.googleapis.com/maps/api/js?v=3&key=#{google_api_key}" }
     = javascript_include_tag 'application'
     = yield(:footer_scripts) if content_for?(:footer_scripts)
