@@ -1,0 +1,29 @@
+.container-fluid
+  .row-fluid
+    .span12
+      #map.map
+  .row-fluid
+    .span12
+      %h4= @location.name
+
+- content_for :footer_scripts do
+  :javascript
+    (function() {
+      var center = [#{raw(@location.latitude)}, #{raw(@location.longitude)}];
+      var googleLayer = new olgm.layer.Google();
+
+      var map = new ol.Map({
+        interactions: olgm.interaction.defaults(),
+        layers: [
+          googleLayer
+        ],
+        target: 'map',
+        view: new ol.View({
+          center: center,
+          zoom: 12
+        })
+      });
+
+      var olGM = new olgm.OLGoogleMaps({map: map});
+      olGM.activate();
+    })();

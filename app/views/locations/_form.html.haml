@@ -1,0 +1,8 @@
+= simple_form_for @location, html: { class: 'form-horizontal' } do |f|
+  = f.error_notification
+  = @location.errors.full_messages.inspect unless @location.errors.empty?
+  = f.input :name
+  = f.input :latitude
+  = f.input :longitude
+  .form-actions
+    = f.button :submit, class: 'btn-primary'
