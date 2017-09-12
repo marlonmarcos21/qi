@@ -11,14 +11,13 @@ class LocationsController < ApplicationController
   end
 
   def edit
-    @media_token = @post.images.first.try(:token) || media_token
   end
 
   def create
     @location.user = current_user
     if @location.save
       flash[:notice] = 'Location created'
-      redirect_to(user_location_path(@location, user_id: current_user.id)) and return
+      redirect_to(user_location_path(current_user.id, @location.id))
     else
       flash[:alert] = 'Error creating location'
       render :new
@@ -26,12 +25,9 @@ class LocationsController < ApplicationController
   end
 
   def update
-    medium_token = params.delete :media_token
-
-    if @post.update(post_params)
-      attach_images medium_token, @post.id
-      attach_videos medium_token, @post.id
-      redirect_to @post, notice: 'Post updated'
+    if @location.update(location_params)
+      flash[:notice] = 'Location updated'
+      redirect_to(user_location_path(current_user.id, @location.id))
     else
       render :edit
     end
@@ -40,6 +36,7 @@ class LocationsController < ApplicationController
   private
 
   def location
+    return unless params[:id]
     @location = Location.includes(:user).find(params[:id])
   end
 

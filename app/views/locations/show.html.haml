@@ -1,10 +1,14 @@
+= link_to fa_icon('home 3x'), root_path
 .container-fluid
   .row-fluid
     .span12
       #map.map
   .row-fluid
     .span12
-      %h4= @location.name
+      %h4
+        = @location.name
+        - if @location.user == current_user
+          = link_to fa_icon('pencil'), edit_location_path(@location)
 
 - content_for :footer_scripts do
   :javascript

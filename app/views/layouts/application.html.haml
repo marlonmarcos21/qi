@@ -12,6 +12,9 @@
 
   %body
     .container.content-section
+      - if bootstrap_flash
+        .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+          = bootstrap_flash
       = yield
     %script{ type: 'text/javascript', src: "https://maps.googleapis.com/maps/api/js?v=3&key=#{google_api_key}" }
     = javascript_include_tag 'application'
