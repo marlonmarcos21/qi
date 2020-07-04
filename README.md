@@ -3,7 +3,7 @@
 ### Clone:
 
 ```
-git clone https://github.com/marlonmarcos21/url_shortener.git
+git clone https://github.com/marlonmarcos21/qi.git
 ```
 
 ### Setup:
